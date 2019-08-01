@@ -8,6 +8,7 @@ import { DeveloperService} from '../shared/developer.service'
 })
 export class DeveloperComponent implements OnInit {
   submitted : boolean;
+  showSuccessMessage: boolean;
   formControls = this.developerService.myForm.controls;
 
   constructor(private developerService : DeveloperService) { }
@@ -20,10 +21,17 @@ onSubmit(){
   console.log(this.developerService.myForm.value);
 
   this.submitted = true;
+  if (this.developerService.myForm.valid){
+    if (this.developerService.myForm.get('$key').value == null){
+      this.developerService.insertDeveloper(this.developerService.myForm.value);
+      this.showSuccessMessage = true;
+      setTimeout(() => this.showSuccessMessage = false, 3000)
+    }
+  }
   
-    this.developerService.insertDeveloper(this.developerService.myForm.value);
  
 this.submitted = false;
+this.developerService.myForm.reset();
  }
 
 }

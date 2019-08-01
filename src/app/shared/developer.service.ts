@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators} from '@angular/forms'
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class DeveloperService {
+developerList: AngularFirestoreCollection<any>;
 
 
-
-  constructor(private firestore: AngularFirestore ) { }
+  constructor(private firestore: AngularFirestore, private router: Router ) { }
 
 
   myForm = new FormGroup({
@@ -26,17 +27,46 @@ export class DeveloperService {
 
   getDevelopers() {
     return this.firestore.collection('developers').snapshotChanges();
+    //this.developerList = this.firestore.collection('developers');
+  //  return this.developerList.snapshotChanges();
   }
 
   insertDeveloper(developer){
     console.log("entered inset")
     console.log(this.firestore.collection('developers').snapshotChanges())
       return this.firestore.collection('developers')
-      .add(developer);
-      
+      .add({
+        firstName: developer.firstName,
+        lastName: developer.lastName,
+        birthDate: developer.birthDate,
+        role: developer.role,
+        roleSpecification: developer.roleSpecification,
+        resume: developer.resume
+      });
 
   }
 
+      
+  populateForm(developer){
+    //this.router.navigate([''])
+    console.log(developer);
+    this.myForm.setValue({
+      $key: developer,
+      firstName: developer.firstName,
+        lastName: developer.lastName,
+        birthDate: developer.birthDate,
+        role: developer.role,
+        roleSpecification: developer.roleSpecification,
+        resume: developer.resume
+    });
+    }
 
+    deleteDeveloper(data){
+  
+       this.firestore
+       .collection("developers")
+       .doc(data.payload.doc.id)
+       .delete();
+    }
 
 }
