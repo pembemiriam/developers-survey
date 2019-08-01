@@ -1,0 +1,43 @@
+<div>
+<form [formGroup] = "this.developerService.myForm" (ngSubmit) = "onSubmit()">
+  <input type="hidden" formControlName = "$key">
+  <div>
+    <mat-form-field>
+      <input matInput formControlName="firstName" [ngClass] = "{'is-invalid':submitted && formControls.firstName.errors}" placeholder="First Name">
+    </mat-form-field>
+    <div *ngIf="submitted && formControls.firstName.errors">
+      this field is required
+    </div>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <input matInput formControlName="lastName" placeholder="Last name">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <input matInput formControlName="birthDate" placeholder="Birth date">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <input matInput formControlName="role" placeholder="Role">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <input matInput formControlName="roleSpecification" placeholder="Role specification">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <input matInput formControlName="resume" placeholder="Resume">
+    </mat-form-field>
+</div>
+    <button mat-button color="primary" type="submit">Submit</button>
+
+  
+</form>
+
+</div>
