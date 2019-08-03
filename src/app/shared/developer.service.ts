@@ -18,9 +18,10 @@ developerList: AngularFirestoreCollection<any>;
     $key: new FormControl(null),
     firstName : new FormControl('', [Validators.required, Validators.maxLength(50)]),
     lastName : new FormControl('', [Validators.required, Validators.maxLength(50)]),
+    submissionDate: new FormControl(new Date()),
     birthDate : new FormControl(''),
     role : new FormControl('',Validators.required),
-    roleSpecification : new FormControl('', Validators.required),
+    roleSpecification : new FormControl(''),
     resume : new FormControl('')
 
   });
@@ -41,7 +42,8 @@ developerList: AngularFirestoreCollection<any>;
         birthDate: developer.birthDate,
         role: developer.role,
         roleSpecification: developer.roleSpecification,
-        resume: developer.resume
+        resume: developer.resume,
+        submissionDate: developer.submissionDate
       });
 
   }
@@ -50,22 +52,31 @@ developerList: AngularFirestoreCollection<any>;
   populateForm(developer){
     //this.router.navigate([''])
     console.log(developer);
-    this.myForm.setValue({
-      $key: developer,
-      firstName: developer.firstName,
+    this.myForm.setValue(developer);
+    }
+
+    updateDeveloper(developer){
+      console.log("updated developer"+developer.$key);
+      this.firestore.collection('developers').doc(developer.$key)
+      .update(
+        {
+          firstName: developer.firstName,
         lastName: developer.lastName,
+        submissionDate: developer.submissionDate, 
         birthDate: developer.birthDate,
         role: developer.role,
         roleSpecification: developer.roleSpecification,
-        resume: developer.resume
-    });
+        resume: developer.resume,
+        })
+
+
     }
 
     deleteDeveloper(data){
   
        this.firestore
        .collection("developers")
-       .doc(data.payload.doc.id)
+       .doc(data)
        .delete();
     }
 

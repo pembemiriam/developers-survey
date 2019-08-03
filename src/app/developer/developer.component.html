@@ -1,6 +1,7 @@
-<div>
+<mat-card>
 <form [formGroup] = "this.developerService.myForm" (ngSubmit) = "onSubmit()">
   <input type="hidden" formControlName = "$key">
+  <input type="hidden" formControlName = "submissionDate">
   <div>
     <mat-form-field>
       <input matInput formControlName="firstName" [ngClass] = "{'is-invalid':submitted && formControls.firstName.errors}" placeholder="First Name">
@@ -16,18 +17,26 @@
     </mat-form-field>
   </div>
   <div>
-    <mat-form-field>
-      <input matInput formControlName="birthDate" placeholder="Birth date">
-    </mat-form-field>
+      <mat-form-field>
+          <input matInput [matDatepicker]="picker" formControlName="birthDate" placeholder="Date of birth ">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
   </div>
   <div>
-    <mat-form-field>
-      <input matInput formControlName="role" placeholder="Role">
-    </mat-form-field>
+      <mat-form-field>
+          <mat-label>Role</mat-label>
+          <mat-select formControlName="role">
+            <mat-option *ngFor="let role of roles" [value]="role.value" >
+              {{role.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+   
   </div>
-  <div>
+  <div *ngIf="this.developerService.myForm.get('role').value == 'Other'">
     <mat-form-field>
-      <input matInput formControlName="roleSpecification" placeholder="Role specification">
+      <input matInput formControlName="roleSpecification" placeholder="Role specification" required>
     </mat-form-field>
   </div>
   <div>
@@ -35,7 +44,7 @@
       <input matInput formControlName="resume" placeholder="Resume">
     </mat-form-field>
 </div>
-    <button mat-button color="primary" type="submit">Submit</button>
+    <button mat-raised-button color="primary" type="submit">Submit</button>
 
   
 </form>
@@ -43,4 +52,4 @@
   submitted successfully
 </div>
 
-</div>
+</mat-card>

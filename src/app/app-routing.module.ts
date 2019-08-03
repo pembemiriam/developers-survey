@@ -4,8 +4,10 @@ import { DeveloperListComponent } from './developer-list/developer-list.componen
 import { DeveloperComponent } from './developer/developer.component';
 
 const routes: Routes = [
-  {path : '', component : DeveloperComponent},
-  {path : 'developers', component : DeveloperListComponent},
+  {path : 'developer', component : DeveloperComponent},
+  {path : '', component : DeveloperListComponent},
+  {path : 'developer-list', component : DeveloperListComponent},
+
 
 ];
 

@@ -1,3 +1,26 @@
 table {
-    width: 100%;
+    width: 70%;
+    margin-left: 15%;
   }
+.mat-form-field {
+    font-size: 14px;
+    width: 70%;
+    margin-left: 15%;
+
+  }
+.mat-toolbar{
+  background-color:violet;
+}
+.title{
+  padding-left: 45%;
+  color:white;
+}
+.add{
+  margin-top: 1%;
+  margin-left:75%;
+  
+}
+.mat-raised-button{
+  background-color: rgba(200, 200, 215, 0.973);
+
+}
