@@ -1,6 +1,9 @@
-<mat-toolbar><span class="title">Developers Profiles</span></mat-toolbar>
-<div *ngIf="!showForm">
-  <div class='add'><button mat-raised-button color="primary" (click)="addDeveloper()">Add Developer</button></div>
+<div *ngIf=!showForm>
+  <div class='add'>
+    <button mat-raised-button color="primary" (click)="addDeveloper()">Add Developer</button>
+    <button mat-raised-button color="primary" (click)="viewReport()">View Developer Report</button>
+
+  </div>
 <mat-form-field>
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
 </mat-form-field>
@@ -46,6 +49,8 @@
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 </div>
-<div *ngIf="showForm">
+
+<div *ngIf=showForm>
   <app-developer></app-developer>
 </div>
+

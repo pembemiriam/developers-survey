@@ -26,12 +26,14 @@ import { AppComponent } from './app.component';
 import { DeveloperComponent } from './developer/developer.component';
 import { DeveloperListComponent } from './developer-list/developer-list.component';
 import { DeveloperService } from './shared/developer.service';
+import { ReportComponent } from './report/report.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DeveloperComponent,
-    DeveloperListComponent
+    DeveloperListComponent,
+    ReportComponent,
   
   ],
   imports: [

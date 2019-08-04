@@ -1,7 +1,7 @@
 <mat-card>
 <form [formGroup] = "this.developerService.myForm" (ngSubmit) = "onSubmit()">
-  <input type="hidden" formControlName = "$key">
-  <input type="hidden" formControlName = "submissionDate">
+  <input type="hidden" formControlName="$key">
+  <input type="hidden" formControlName="submissionDate">
   <div>
     <mat-form-field>
       <input matInput formControlName="firstName" [ngClass] = "{'is-invalid':submitted && formControls.firstName.errors}" placeholder="First Name">

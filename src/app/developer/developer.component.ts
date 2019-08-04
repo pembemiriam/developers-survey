@@ -18,14 +18,14 @@ export class DeveloperComponent implements OnInit {
   formControls = this.developerService.myForm.controls;
 
   roles: Role[] = [
-    {value: 'Frontend', viewValue: 'Frontend developer'},
-    {value: 'backend', viewValue: 'Backend developer'},
-    {value: 'fullstack', viewValue: 'Fullstack developer'},
+    {value: 'Frontend developer', viewValue: 'Frontend developer'},
+    {value: 'Backend developer', viewValue: 'Backend developer'},
+    {value: 'Fullstack', viewValue: 'Fullstack'},
     {value: 'Other', viewValue: 'Other'},
 
   ];
 
-  constructor(private developerService : DeveloperService, private router: Router) { }
+  constructor(public developerService : DeveloperService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -48,6 +48,8 @@ onSubmit(){
       this.developerService.updateDeveloper(this.developerService.myForm.value);
       this.showSuccessMessage = true;
       setTimeout(() => this.showSuccessMessage = false, 2000)
+      this.router.navigate(['developer-list']);
+
     }
  // }
   

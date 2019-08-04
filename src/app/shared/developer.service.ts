@@ -43,7 +43,7 @@ developerList: AngularFirestoreCollection<any>;
         role: developer.role,
         roleSpecification: developer.roleSpecification,
         resume: developer.resume,
-        submissionDate: developer.submissionDate
+        submissionDate: new Date()
       });
 
   }

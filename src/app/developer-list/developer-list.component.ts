@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DeveloperService } from '../shared/developer.service'
 import { MatTableDataSource } from '@angular/material';
+import { Router } from '@angular/router';
 
 export interface PeriodicElement {
   name: string;
@@ -20,7 +21,8 @@ developers:any;
 displayedColumns: string[] = ['firstName', 'lastName', 'role', 'birthDate', 'action'];
 dataSource: MatTableDataSource<any>;
 showForm : boolean;
-  constructor(private developerService: DeveloperService) { }
+developerDetails: any;
+  constructor(private developerService: DeveloperService, private router: Router) { }
 
   ngOnInit() {
     this.showForm = false;
@@ -63,10 +65,15 @@ showForm : boolean;
     this.showForm = true;
     this.developerService.populateForm(developer);
 
+
   }
 
   addDeveloper(){
-    this.showForm = true;
+    this.router.navigate(['developer']);
+  }
+
+  viewReport(){
+    this.router.navigate(['report']);
   }
 
 }
