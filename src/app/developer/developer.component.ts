@@ -59,4 +59,8 @@ this.developerService.myForm.reset();
 
  }
 
+ viewDeveloper() {
+   this.router.navigate(['developer-list']);
+ }
+
 }

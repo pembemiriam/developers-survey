@@ -1,0 +1,19 @@
+.graph{
+    width: 80%;
+    margin-left:10%;
+    margin-top:3%;
+}
+mat-card{
+    width: 60%;
+    margin-left: 15%;
+    margin-top: 2%;
+}
+.add{
+    margin-top: 3%;
+    margin-left:60%;
+    
+  }
+  .mat-raised-button{
+    background-color: #85929E;
+  
+  }

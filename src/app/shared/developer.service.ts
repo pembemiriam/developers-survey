@@ -22,7 +22,6 @@ developerList: AngularFirestoreCollection<any>;
     birthDate : new FormControl(''),
     role : new FormControl('',Validators.required),
     roleSpecification : new FormControl(''),
-    resume : new FormControl('')
 
   });
 
@@ -42,7 +41,6 @@ developerList: AngularFirestoreCollection<any>;
         birthDate: developer.birthDate,
         role: developer.role,
         roleSpecification: developer.roleSpecification,
-        resume: developer.resume,
         submissionDate: new Date()
       });
 
@@ -66,7 +64,6 @@ developerList: AngularFirestoreCollection<any>;
         birthDate: developer.birthDate,
         role: developer.role,
         roleSpecification: developer.roleSpecification,
-        resume: developer.resume,
         })
 
 

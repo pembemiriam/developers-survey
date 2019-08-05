@@ -1,14 +1,19 @@
+<div class='add'>
+    <button mat-raised-button color="primary" (click)="viewDeveloper()">View developers</button>&nbsp;
+
+  </div>
 <mat-card>
+  <div>
+  <div class="form">
 <form [formGroup] = "this.developerService.myForm" (ngSubmit) = "onSubmit()">
   <input type="hidden" formControlName="$key">
   <input type="hidden" formControlName="submissionDate">
   <div>
     <mat-form-field>
-      <input matInput formControlName="firstName" [ngClass] = "{'is-invalid':submitted && formControls.firstName.errors}" placeholder="First Name">
+      <input matInput formControlName="firstName" placeholder="First Name">
+     
     </mat-form-field>
-    <div *ngIf="submitted && formControls.firstName.errors">
-      this field is required
-    </div>
+   
   </div>
 
   <div>
@@ -39,17 +44,14 @@
       <input matInput formControlName="roleSpecification" placeholder="Role specification" required>
     </mat-form-field>
   </div>
-  <div>
-    <mat-form-field>
-      <input matInput formControlName="resume" placeholder="Resume">
-    </mat-form-field>
-</div>
-    <button mat-raised-button color="primary" type="submit">Submit</button>
+  
+    <button  mat-raised-button color="primary" type="submit">Submit</button>
 
   
 </form>
-<div *ngIf="showSuccessMessage">
-  submitted successfully
 </div>
-
+<div class="image">
+  <img src="assets/eng.jpg"/>
+</div>
+</div>
 </mat-card>

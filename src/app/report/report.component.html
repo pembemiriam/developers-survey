@@ -1,1 +1,9 @@
-<canvas id="lineChart"></canvas>
+<div class='add'>
+    <button mat-raised-button color="primary" (click)="viewDeveloper()">View developers</button>&nbsp;
+
+  </div>
+<mat-card>
+  <div width="500" height="300" class="graph" #barChart>
+    <canvas width="500px" height="300px" id="barChart">{{ barChart }}</canvas>
+  </div>
+</mat-card>

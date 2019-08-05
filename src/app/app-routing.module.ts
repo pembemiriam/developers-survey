@@ -10,6 +10,7 @@ const routes: Routes = [
   {path : 'developer', component : DeveloperComponent},
   {path : '', component : DeveloperListComponent},
   {path : 'developer-list', component : DeveloperListComponent},
+  {path : 'edit-developer', component : DeveloperListComponent},
   {path : 'report', component : ReportComponent},
 
 
