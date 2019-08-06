@@ -2,7 +2,7 @@ table {
     width: 70%;
     margin-left: 15%;
   }
-.mat-form-field {
+.filter {
     font-size: 14px;
     width: 70%;
     margin-left: 15%;
@@ -23,4 +23,24 @@ table {
 .mat-raised-button{
   background-color: #85929E;
 
+}
+.mat-form-field {
+  width: 300px;
+
+}
+img{
+  height: 300px;
+  margin-left:2%;
+  width: 450px;
+}
+.form,.image{
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 5%;
+
+}
+.mat-card{
+  margin-left: 15%;
+  margin-right: 25%;
+  margin-top: 1%;
 }

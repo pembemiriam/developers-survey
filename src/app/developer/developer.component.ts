@@ -48,14 +48,14 @@ onSubmit(){
       this.developerService.updateDeveloper(this.developerService.myForm.value);
       this.showSuccessMessage = true;
       setTimeout(() => this.showSuccessMessage = false, 2000)
-      this.router.navigate(['developer-list']);
-
+this.router.navigateByUrl('developer-list');
     }
  // }
   
  
 this.submitted = false;
 this.developerService.myForm.reset();
+this.router.navigateByUrl('');
 
  }
 

@@ -1,10 +1,10 @@
 <div *ngIf=!showForm>
   <div class='add'>
     <button mat-raised-button color="primary" (click)="addDeveloper()">Add Developer</button>&nbsp;
-    <button mat-raised-button color="primary" (click)="viewReport()">View Developer Report</button>
+    <button mat-raised-button color="primary" (click)="viewReport()">View Developers Report</button>
 
   </div>
-<mat-form-field>
+<mat-form-field class="filter">
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
 </mat-form-field>
 
@@ -51,6 +51,62 @@
 </div>
 
 <div *ngIf=showForm>
-  <app-developer></app-developer>
+  <div class='add'>
+    <button mat-raised-button color="primary" (click)="viewDeveloper()">View developers</button>&nbsp;
+
+  </div>
+<mat-card>
+  <div>
+  <div class="form">
+<form [formGroup] = "this.developerService.myForm" (ngSubmit) = "onSubmit()">
+  <input type="hidden" formControlName="$key">
+  <input type="hidden" formControlName="submissionDate">
+  <div>
+    <mat-form-field>
+      <input matInput formControlName="firstName" placeholder="First Name">
+     
+    </mat-form-field>
+   
+  </div>
+
+  <div>
+    <mat-form-field>
+      <input matInput formControlName="lastName" placeholder="Last name">
+    </mat-form-field>
+  </div>
+  <div>
+      <mat-form-field>
+          <input matInput [matDatepicker]="picker" formControlName="birthDate" placeholder="Date of birth ">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+  </div>
+  <div>
+      <mat-form-field>
+          <mat-label>Role</mat-label>
+          <mat-select formControlName="role">
+            <mat-option *ngFor="let role of roles" [value]="role.value" >
+              {{role.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+   
+  </div>
+  <div *ngIf="this.developerService.myForm.get('role').value == 'Other'">
+    <mat-form-field>
+      <input matInput formControlName="roleSpecification" placeholder="Role specification" required>
+    </mat-form-field>
+  </div>
+  
+    <button  mat-raised-button color="primary" type="submit">Submit</button>
+
+  
+</form>
+</div>
+<div class="image">
+  <img src="assets/eng.jpg"/>
+</div>
+</div>
+</mat-card>
 </div>
 

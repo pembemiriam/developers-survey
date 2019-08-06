@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DeveloperService } from '../shared/developer.service'
 import { MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
+import { Role } from '../developer/developer.component';
+
 
 export interface PeriodicElement {
   name: string;
@@ -22,7 +24,16 @@ displayedColumns: string[] = ['firstName', 'lastName', 'role', 'birthDate', 'act
 dataSource: MatTableDataSource<any>;
 showForm : boolean;
 developerDetails: any;
-  constructor(private developerService: DeveloperService, private router: Router) { }
+submitted: any;
+
+roles: Role[] = [
+  {value: 'Frontend developer', viewValue: 'Frontend developer'},
+  {value: 'Backend developer', viewValue: 'Backend developer'},
+  {value: 'Fullstack', viewValue: 'Fullstack'},
+  {value: 'Other', viewValue: 'Other'},
+
+];
+  constructor(public developerService: DeveloperService, private router: Router) { }
 
   ngOnInit() {
     this.showForm = false;
@@ -41,7 +52,11 @@ developerDetails: any;
         });
         console.log(this.developerArray);
         this.dataSource = new MatTableDataSource(this.developerArray);
-
+        for (var developer of this.developerArray) {
+          if(developer.role == 'Other'){
+            developer.role = developer.roleSpecification;
+          }
+        }
 
       }
     );
@@ -66,14 +81,42 @@ developerDetails: any;
     this.developerService.populateForm(developer);
 
 
+
   }
 
   addDeveloper(){
     this.router.navigate(['developer']);
   }
 
+  viewDeveloper() {
+    this.showForm = false;
+  }
+
   viewReport(){
     this.router.navigate(['report']);
-  }
+  }onSubmit(){
+    console.log("hello");
+    console.log(this.developerService.myForm.value);
+  
+    this.submitted = true;
+  //  if (this.developerService.myForm.valid){
+      console.log('valid');
+      if (this.developerService.myForm.get('$key').value == null){
+        console.log('true');
+        this.developerService.insertDeveloper(this.developerService.myForm.value);
+        this.router.navigateByUrl('developer-list');
+      }else{
+        console.log("this is else");
+        this.developerService.updateDeveloper(this.developerService.myForm.value);
+  this.showForm = false;
+      }
+   // }
+    
+   
+  this.submitted = false;
+  this.developerService.myForm.reset();
+  
+   }
+
 
 }
